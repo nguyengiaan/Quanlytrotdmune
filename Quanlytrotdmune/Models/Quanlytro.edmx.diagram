@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="10fa279076534ec3a2f611ed30ce43aa" Name="Diagram1">
+        <EntityTypeShape EntityType="QUANLYTROModel.ADMIN" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYTROModel.COMMENT" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYTROModel.FAVORITE" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYTROModel.IMAGE" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYTROModel.LOCATION" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYTROModel.ROOM" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYTROModel.USERTRO" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="QUANLYTROModel.FK__COMMENT__room_id__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYTROModel.FK__COMMENT__user_id__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYTROModel.FK__FAVORITE__room_i__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYTROModel.FK__FAVORITE__user_i__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYTROModel.FK__IMAGE__room_id__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYTROModel.FK__ROOM__location_i__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYTROModel.FK__ROOM__userid__440B1D61" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

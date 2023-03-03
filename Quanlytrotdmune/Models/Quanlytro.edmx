@@ -1,0 +1,512 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QUANLYTROModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="fullname" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="COMMENT">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="room_id" Type="int" />
+          <Property Name="content" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="rate" Type="int" />
+        </EntityType>
+        <EntityType Name="FAVORITE">
+          <Key>
+            <PropertyRef Name="favorite_id" />
+          </Key>
+          <Property Name="favorite_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="room_id" Type="int" />
+        </EntityType>
+        <EntityType Name="IMAGE">
+          <Key>
+            <PropertyRef Name="image_id" />
+          </Key>
+          <Property Name="image_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="room_id" Type="int" />
+          <Property Name="url" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOCATION">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="city" Type="varchar" MaxLength="50" />
+          <Property Name="district" Type="varchar" MaxLength="50" />
+          <Property Name="ward" Type="varchar" MaxLength="50" />
+          <Property Name="street" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ROOM">
+          <Key>
+            <PropertyRef Name="room_id" />
+          </Key>
+          <Property Name="room_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="price" Type="float" />
+          <Property Name="status" Type="varchar" MaxLength="20" />
+          <Property Name="location_id" Type="int" />
+          <Property Name="userid" Type="int" />
+        </EntityType>
+        <EntityType Name="USERTRO">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="full_name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="15" />
+          <Property Name="address" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__COMMENT__room_id__52593CB8">
+          <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROOM">
+              <PropertyRef Name="room_id" />
+            </Principal>
+            <Dependent Role="COMMENT">
+              <PropertyRef Name="room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__COMMENT__user_id__5165187F">
+          <End Role="USERTRO" Type="Self.USERTRO" Multiplicity="0..1" />
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERTRO">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="COMMENT">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FAVORITE__room_i__59FA5E80">
+          <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+          <End Role="FAVORITE" Type="Self.FAVORITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROOM">
+              <PropertyRef Name="room_id" />
+            </Principal>
+            <Dependent Role="FAVORITE">
+              <PropertyRef Name="room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FAVORITE__user_i__59063A47">
+          <End Role="USERTRO" Type="Self.USERTRO" Multiplicity="0..1" />
+          <End Role="FAVORITE" Type="Self.FAVORITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERTRO">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="FAVORITE">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IMAGE__room_id__5DCAEF64">
+          <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+          <End Role="IMAGE" Type="Self.IMAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROOM">
+              <PropertyRef Name="room_id" />
+            </Principal>
+            <Dependent Role="IMAGE">
+              <PropertyRef Name="room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ROOM__location_i__4316F928">
+          <End Role="LOCATION" Type="Self.LOCATION" Multiplicity="0..1" />
+          <End Role="ROOM" Type="Self.ROOM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOCATION">
+              <PropertyRef Name="location_id" />
+            </Principal>
+            <Dependent Role="ROOM">
+              <PropertyRef Name="location_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ROOM__userid__440B1D61">
+          <End Role="USERTRO" Type="Self.USERTRO" Multiplicity="0..1" />
+          <End Role="ROOM" Type="Self.ROOM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERTRO">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="ROOM">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUANLYTROModelStoreContainer">
+          <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMMENT" EntityType="Self.COMMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FAVORITE" EntityType="Self.FAVORITE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IMAGE" EntityType="Self.IMAGE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOCATION" EntityType="Self.LOCATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROOM" EntityType="Self.ROOM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERTRO" EntityType="Self.USERTRO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__COMMENT__room_id__52593CB8" Association="Self.FK__COMMENT__room_id__52593CB8">
+            <End Role="ROOM" EntitySet="ROOM" />
+            <End Role="COMMENT" EntitySet="COMMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__COMMENT__user_id__5165187F" Association="Self.FK__COMMENT__user_id__5165187F">
+            <End Role="USERTRO" EntitySet="USERTRO" />
+            <End Role="COMMENT" EntitySet="COMMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FAVORITE__room_i__59FA5E80" Association="Self.FK__FAVORITE__room_i__59FA5E80">
+            <End Role="ROOM" EntitySet="ROOM" />
+            <End Role="FAVORITE" EntitySet="FAVORITE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FAVORITE__user_i__59063A47" Association="Self.FK__FAVORITE__user_i__59063A47">
+            <End Role="USERTRO" EntitySet="USERTRO" />
+            <End Role="FAVORITE" EntitySet="FAVORITE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IMAGE__room_id__5DCAEF64" Association="Self.FK__IMAGE__room_id__5DCAEF64">
+            <End Role="ROOM" EntitySet="ROOM" />
+            <End Role="IMAGE" EntitySet="IMAGE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ROOM__location_i__4316F928" Association="Self.FK__ROOM__location_i__4316F928">
+            <End Role="LOCATION" EntitySet="LOCATION" />
+            <End Role="ROOM" EntitySet="ROOM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ROOM__userid__440B1D61" Association="Self.FK__ROOM__userid__440B1D61">
+            <End Role="USERTRO" EntitySet="USERTRO" />
+            <End Role="ROOM" EntitySet="ROOM" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QUANLYTROModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="COMMENT">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="room_id" Type="Int32" />
+          <Property Name="content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rate" Type="Int32" />
+          <NavigationProperty Name="ROOM" Relationship="Self.FK__COMMENT__room_id__52593CB8" FromRole="COMMENT" ToRole="ROOM" />
+          <NavigationProperty Name="USERTRO" Relationship="Self.FK__COMMENT__user_id__5165187F" FromRole="COMMENT" ToRole="USERTRO" />
+        </EntityType>
+        <EntityType Name="FAVORITE">
+          <Key>
+            <PropertyRef Name="favorite_id" />
+          </Key>
+          <Property Name="favorite_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="room_id" Type="Int32" />
+          <NavigationProperty Name="ROOM" Relationship="Self.FK__FAVORITE__room_i__59FA5E80" FromRole="FAVORITE" ToRole="ROOM" />
+          <NavigationProperty Name="USERTRO" Relationship="Self.FK__FAVORITE__user_i__59063A47" FromRole="FAVORITE" ToRole="USERTRO" />
+        </EntityType>
+        <EntityType Name="IMAGE">
+          <Key>
+            <PropertyRef Name="image_id" />
+          </Key>
+          <Property Name="image_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="room_id" Type="Int32" />
+          <Property Name="url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ROOM" Relationship="Self.FK__IMAGE__room_id__5DCAEF64" FromRole="IMAGE" ToRole="ROOM" />
+        </EntityType>
+        <EntityType Name="LOCATION">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="district" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ward" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ROOMs" Relationship="Self.FK__ROOM__location_i__4316F928" FromRole="LOCATION" ToRole="ROOM" />
+        </EntityType>
+        <EntityType Name="ROOM">
+          <Key>
+            <PropertyRef Name="room_id" />
+          </Key>
+          <Property Name="room_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Double" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="location_id" Type="Int32" />
+          <Property Name="userid" Type="Int32" />
+          <NavigationProperty Name="COMMENTs" Relationship="Self.FK__COMMENT__room_id__52593CB8" FromRole="ROOM" ToRole="COMMENT" />
+          <NavigationProperty Name="FAVORITEs" Relationship="Self.FK__FAVORITE__room_i__59FA5E80" FromRole="ROOM" ToRole="FAVORITE" />
+          <NavigationProperty Name="IMAGEs" Relationship="Self.FK__IMAGE__room_id__5DCAEF64" FromRole="ROOM" ToRole="IMAGE" />
+          <NavigationProperty Name="LOCATION" Relationship="Self.FK__ROOM__location_i__4316F928" FromRole="ROOM" ToRole="LOCATION" />
+          <NavigationProperty Name="USERTRO" Relationship="Self.FK__ROOM__userid__440B1D61" FromRole="ROOM" ToRole="USERTRO" />
+        </EntityType>
+        <EntityType Name="USERTRO">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="full_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="COMMENTs" Relationship="Self.FK__COMMENT__user_id__5165187F" FromRole="USERTRO" ToRole="COMMENT" />
+          <NavigationProperty Name="FAVORITEs" Relationship="Self.FK__FAVORITE__user_i__59063A47" FromRole="USERTRO" ToRole="FAVORITE" />
+          <NavigationProperty Name="ROOMs" Relationship="Self.FK__ROOM__userid__440B1D61" FromRole="USERTRO" ToRole="ROOM" />
+        </EntityType>
+        <Association Name="FK__COMMENT__room_id__52593CB8">
+          <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROOM">
+              <PropertyRef Name="room_id" />
+            </Principal>
+            <Dependent Role="COMMENT">
+              <PropertyRef Name="room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__COMMENT__user_id__5165187F">
+          <End Role="USERTRO" Type="Self.USERTRO" Multiplicity="0..1" />
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERTRO">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="COMMENT">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FAVORITE__room_i__59FA5E80">
+          <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+          <End Role="FAVORITE" Type="Self.FAVORITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROOM">
+              <PropertyRef Name="room_id" />
+            </Principal>
+            <Dependent Role="FAVORITE">
+              <PropertyRef Name="room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FAVORITE__user_i__59063A47">
+          <End Role="USERTRO" Type="Self.USERTRO" Multiplicity="0..1" />
+          <End Role="FAVORITE" Type="Self.FAVORITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERTRO">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="FAVORITE">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IMAGE__room_id__5DCAEF64">
+          <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+          <End Role="IMAGE" Type="Self.IMAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROOM">
+              <PropertyRef Name="room_id" />
+            </Principal>
+            <Dependent Role="IMAGE">
+              <PropertyRef Name="room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ROOM__location_i__4316F928">
+          <End Role="LOCATION" Type="Self.LOCATION" Multiplicity="0..1" />
+          <End Role="ROOM" Type="Self.ROOM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOCATION">
+              <PropertyRef Name="location_id" />
+            </Principal>
+            <Dependent Role="ROOM">
+              <PropertyRef Name="location_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ROOM__userid__440B1D61">
+          <End Role="USERTRO" Type="Self.USERTRO" Multiplicity="0..1" />
+          <End Role="ROOM" Type="Self.ROOM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERTRO">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="ROOM">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUANLYTROEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
+          <EntitySet Name="COMMENTs" EntityType="Self.COMMENT" />
+          <EntitySet Name="FAVORITEs" EntityType="Self.FAVORITE" />
+          <EntitySet Name="IMAGEs" EntityType="Self.IMAGE" />
+          <EntitySet Name="LOCATIONs" EntityType="Self.LOCATION" />
+          <EntitySet Name="ROOMs" EntityType="Self.ROOM" />
+          <EntitySet Name="USERTROes" EntityType="Self.USERTRO" />
+          <AssociationSet Name="FK__COMMENT__room_id__52593CB8" Association="Self.FK__COMMENT__room_id__52593CB8">
+            <End Role="ROOM" EntitySet="ROOMs" />
+            <End Role="COMMENT" EntitySet="COMMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__COMMENT__user_id__5165187F" Association="Self.FK__COMMENT__user_id__5165187F">
+            <End Role="USERTRO" EntitySet="USERTROes" />
+            <End Role="COMMENT" EntitySet="COMMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FAVORITE__room_i__59FA5E80" Association="Self.FK__FAVORITE__room_i__59FA5E80">
+            <End Role="ROOM" EntitySet="ROOMs" />
+            <End Role="FAVORITE" EntitySet="FAVORITEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FAVORITE__user_i__59063A47" Association="Self.FK__FAVORITE__user_i__59063A47">
+            <End Role="USERTRO" EntitySet="USERTROes" />
+            <End Role="FAVORITE" EntitySet="FAVORITEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IMAGE__room_id__5DCAEF64" Association="Self.FK__IMAGE__room_id__5DCAEF64">
+            <End Role="ROOM" EntitySet="ROOMs" />
+            <End Role="IMAGE" EntitySet="IMAGEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ROOM__location_i__4316F928" Association="Self.FK__ROOM__location_i__4316F928">
+            <End Role="LOCATION" EntitySet="LOCATIONs" />
+            <End Role="ROOM" EntitySet="ROOMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ROOM__userid__440B1D61" Association="Self.FK__ROOM__userid__440B1D61">
+            <End Role="USERTRO" EntitySet="USERTROes" />
+            <End Role="ROOM" EntitySet="ROOMs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QUANLYTROModelStoreContainer" CdmEntityContainer="QUANLYTROEntities">
+          <EntitySetMapping Name="ADMINs">
+            <EntityTypeMapping TypeName="QUANLYTROModel.ADMIN">
+              <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMMENTs">
+            <EntityTypeMapping TypeName="QUANLYTROModel.COMMENT">
+              <MappingFragment StoreEntitySet="COMMENT">
+                <ScalarProperty Name="comment_id" ColumnName="comment_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="room_id" ColumnName="room_id" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FAVORITEs">
+            <EntityTypeMapping TypeName="QUANLYTROModel.FAVORITE">
+              <MappingFragment StoreEntitySet="FAVORITE">
+                <ScalarProperty Name="favorite_id" ColumnName="favorite_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="room_id" ColumnName="room_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMAGEs">
+            <EntityTypeMapping TypeName="QUANLYTROModel.IMAGE">
+              <MappingFragment StoreEntitySet="IMAGE">
+                <ScalarProperty Name="image_id" ColumnName="image_id" />
+                <ScalarProperty Name="room_id" ColumnName="room_id" />
+                <ScalarProperty Name="url" ColumnName="url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOCATIONs">
+            <EntityTypeMapping TypeName="QUANLYTROModel.LOCATION">
+              <MappingFragment StoreEntitySet="LOCATION">
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="ward" ColumnName="ward" />
+                <ScalarProperty Name="street" ColumnName="street" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROOMs">
+            <EntityTypeMapping TypeName="QUANLYTROModel.ROOM">
+              <MappingFragment StoreEntitySet="ROOM">
+                <ScalarProperty Name="room_id" ColumnName="room_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERTROes">
+            <EntityTypeMapping TypeName="QUANLYTROModel.USERTRO">
+              <MappingFragment StoreEntitySet="USERTRO">
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
