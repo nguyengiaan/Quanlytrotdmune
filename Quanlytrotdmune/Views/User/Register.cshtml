@@ -1,0 +1,57 @@
+﻿@using Quanlytrotdmune.Models
+@model Quanlytrotdmune.Models.User
+
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<div class="register-form">
+    @using (Html.BeginForm("Register", "User"))
+    {
+        @Html.AntiForgeryToken()
+        <span>@ViewBag.Register</span>
+        <div class="row">
+            <div class="col-md-6">
+
+                <label>Họ và Tên</label>
+                @Html.TextBoxFor(x => x.full_name, new { @class = "form-control", placeholder = "họ và tên" })
+                @Html.ValidationMessageFor(x => x.full_name, "", new { @class = " badge badge-danger" })
+            </div>
+            <div class="col-md-6">
+                <label>Địa chỉ </label>
+
+                @Html.TextBoxFor(x => x.address, new { @class = "form-control", placeholder = "Địa  chỉ" })
+                @Html.ValidationMessageFor(x => x.address, "", new { @class = " badge badge-danger" })
+
+            </div>
+            <div class="col-md-6">
+                <label>E-mail</label>
+
+                @Html.TextBoxFor(x => x.email, new { @class = "form-control", placeholder = "Email" })
+                @Html.ValidationMessageFor(x => x.email, "", new { @class = " badge badge-danger" })
+
+            </div>
+            <div class="col-md-6">
+                <label>Số điện thoại</label>
+
+                @Html.TextBoxFor(x => x.phone, new { @class = "form-control", placeholder = "Số điện thoại" })
+                @Html.ValidationMessageFor(x => x.phone, "", new { @class = " badge badge-danger" })
+            </div>
+            <div class="col-md-6">
+                <label>Mật khẩu</label>
+                @Html.PasswordFor(x => x.password, new { @class = "form-control", placeholder = "Mật khẩu" })
+                @Html.ValidationMessageFor(x => x.password, "", new { @class = " badge badge-danger" })
+            </div>
+            <div class="col-md-6">
+                <label>Nhập lại mật khẩu</label>
+                @Html.PasswordFor(x => x.confimpass, new { @class = "form-control", placeholder = "Mật khẩu" })
+                @Html.ValidationMessageFor(x => x.confimpass, "", new { @class = " badge badge-danger" })
+            </div>
+            <div class="col-md-12">
+              @Html.Raw("<input type='submit' class='btn btn-light btn-block' ></input>")
+            </div>
+        </div>
+    }
+</div>
