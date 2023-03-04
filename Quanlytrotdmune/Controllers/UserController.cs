@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using Quanlytrotdmune.Models;
 namespace Quanlytrotdmune.Controllers
 {
@@ -16,11 +17,6 @@ namespace Quanlytrotdmune.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public ActionResult Register()
-        {
-            return PartialView();
-        }
         [HttpPost]
         public ActionResult Register(User user)
         {
@@ -29,23 +25,22 @@ namespace Quanlytrotdmune.Controllers
                 if(ModelState.IsValid)
                 {
                     USERTRO usertro=new USERTRO();
-                    usertro.full_name = user.full_name;
                     usertro.address = user.address;
                     usertro.email = user.email;
+                    usertro.full_name = user.full_name;
                     usertro.phone = user.phone;
+                    usertro.password= user.password;
                     usertro.password =GetMD5(user.password);
                     ql.USERTROes.Add(usertro);   
                     ql.SaveChanges();
-                    ViewBag.register = "Đăng ký thành công";
-                    return RedirectToAction("Login", "User");
-        
+                    return View();
                 }            
             }
             catch(Exception)
-            { 
-                ViewBag.register = "Đăng ký không thành công";
+            {
+                return View();
             }
-            return PartialView();
+           return View();
         }
         public static string GetMD5(string str)
         {

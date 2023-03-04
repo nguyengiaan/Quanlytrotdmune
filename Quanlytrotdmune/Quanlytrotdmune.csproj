@@ -133,44 +133,46 @@
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Model\LoginAdmin.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ADMIN.cs">
-      <DependentUpon>Quanlytro.tt</DependentUpon>
+      <DependentUpon>Qltro.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\COMMENT.cs">
-      <DependentUpon>Quanlytro.tt</DependentUpon>
+      <DependentUpon>Qltro.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FAVORITE.cs">
-      <DependentUpon>Quanlytro.tt</DependentUpon>
+      <DependentUpon>Qltro.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IMAGE.cs">
-      <DependentUpon>Quanlytro.tt</DependentUpon>
+      <DependentUpon>Qltro.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LOCATION.cs">
-      <DependentUpon>Quanlytro.tt</DependentUpon>
+      <DependentUpon>Qltro.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Quanlytro.Context.cs">
+    <Compile Include="Models\Qltro.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Quanlytro.Context.tt</DependentUpon>
+      <DependentUpon>Qltro.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Quanlytro.cs">
+    <Compile Include="Models\Qltro.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Quanlytro.tt</DependentUpon>
+      <DependentUpon>Qltro.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Quanlytro.Designer.cs">
+    <Compile Include="Models\Qltro.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Quanlytro.edmx</DependentUpon>
+      <DependentUpon>Qltro.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ROOM.cs">
-      <DependentUpon>Quanlytro.tt</DependentUpon>
+      <DependentUpon>Qltro.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\USERTRO.cs">
-      <DependentUpon>Quanlytro.tt</DependentUpon>
+      <DependentUpon>Qltro.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -780,19 +782,64 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\img\brand-1.png" />
+    <Content Include="Content\img\brand-2.png" />
+    <Content Include="Content\img\brand-3.png" />
+    <Content Include="Content\img\brand-4.png" />
+    <Content Include="Content\img\brand-5.png" />
+    <Content Include="Content\img\brand-6.png" />
+    <Content Include="Content\img\category-1.jpg" />
+    <Content Include="Content\img\category-2.jpg" />
+    <Content Include="Content\img\category-3.jpg" />
+    <Content Include="Content\img\category-4.jpg" />
+    <Content Include="Content\img\category-5.jpg" />
+    <Content Include="Content\img\category-6.jpg" />
+    <Content Include="Content\img\category-7.jpg" />
+    <Content Include="Content\img\category-8.jpg" />
+    <Content Include="Content\img\godaddy.svg" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\norton.svg" />
+    <Content Include="Content\img\payment-method.png" />
+    <Content Include="Content\img\product-1.jpg" />
+    <Content Include="Content\img\product-10.jpg" />
+    <Content Include="Content\img\product-2.jpg" />
+    <Content Include="Content\img\product-3.jpg" />
+    <Content Include="Content\img\product-4.jpg" />
+    <Content Include="Content\img\product-5.jpg" />
+    <Content Include="Content\img\product-6.jpg" />
+    <Content Include="Content\img\product-7.jpg" />
+    <Content Include="Content\img\product-8.jpg" />
+    <Content Include="Content\img\product-9.jpg" />
+    <Content Include="Content\img\review-1.jpg" />
+    <Content Include="Content\img\review-2.jpg" />
+    <Content Include="Content\img\review-3.jpg" />
+    <Content Include="Content\img\slider-1.jpg" />
+    <Content Include="Content\img\slider-2.jpg" />
+    <Content Include="Content\img\slider-3.jpg" />
+    <Content Include="Content\img\ssl.svg" />
+    <Content Include="Content\js\main.js" />
+    <Content Include="Content\lib\easing\easing.js" />
+    <Content Include="Content\lib\easing\easing.min.js" />
+    <Content Include="Content\lib\slick\ajax-loader.gif" />
+    <Content Include="Content\lib\slick\fonts\slick.svg" />
+    <Content Include="Content\lib\slick\slick-theme.css" />
+    <Content Include="Content\lib\slick\slick.css" />
+    <Content Include="Content\lib\slick\slick.js" />
+    <Content Include="Content\lib\slick\slick.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Quanlytro.Context.tt">
+    <Content Include="Models\Qltro.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Quanlytro.edmx</DependentUpon>
-      <LastGenOutput>Quanlytro.Context.cs</LastGenOutput>
+      <DependentUpon>Qltro.edmx</DependentUpon>
+      <LastGenOutput>Qltro.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Quanlytro.tt">
+    <Content Include="Models\Qltro.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Quanlytro.edmx</DependentUpon>
-      <LastGenOutput>Quanlytro.cs</LastGenOutput>
+      <DependentUpon>Qltro.edmx</DependentUpon>
+      <LastGenOutput>Qltro.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -824,15 +871,23 @@
     <Content Include="Areas\Admin\Content\documentation\assets\.DS_Store" />
     <Content Include="Areas\Admin\Content\documentation\assets\blueprint-css\plugins\.DS_Store" />
     <Content Include="Areas\Admin\Views\HomeAdmin\Login.cshtml" />
-    <EntityDeploy Include="Models\Quanlytro.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Quanlytro.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Quanlytro.edmx.diagram">
-      <DependentUpon>Quanlytro.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\information.cshtml" />
+    <EntityDeploy Include="Models\Qltro.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Qltro.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Qltro.edmx.diagram">
+      <DependentUpon>Qltro.edmx</DependentUpon>
+    </Content>
+    <Content Include="Content\lib\slick\config.rb" />
+    <Content Include="Content\lib\slick\fonts\slick.eot" />
+    <Content Include="Content\lib\slick\fonts\slick.ttf" />
+    <Content Include="Content\lib\slick\fonts\slick.woff" />
+    <Content Include="Content\lib\slick\slick-theme.less" />
+    <Content Include="Content\lib\slick\slick-theme.scss" />
+    <Content Include="Content\lib\slick\slick.less" />
+    <Content Include="Content\lib\slick\slick.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -859,6 +914,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutPageAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage2.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

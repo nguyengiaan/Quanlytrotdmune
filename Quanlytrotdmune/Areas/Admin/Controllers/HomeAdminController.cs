@@ -11,7 +11,7 @@ namespace Quanlytrotdmune.Areas.Admin.Controllers
     public class HomeAdminController : Controller
     {
         // GET: Admin/HomeAdmin
-        QUANLYTROEntities ql=new QUANLYTROEntities();
+        QUANLYTROEntities1 ql=new QUANLYTROEntities1();
         public ActionResult Index()
         {
             if (Session["idAdmin"]==null)

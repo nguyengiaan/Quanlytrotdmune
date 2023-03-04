@@ -13,10 +13,10 @@ namespace Quanlytrotdmune.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QUANLYTROEntities : DbContext
+    public partial class QUANLYTROEntities1 : DbContext
     {
-        public QUANLYTROEntities()
-            : base("name=QUANLYTROEntities")
+        public QUANLYTROEntities1()
+            : base("name=QUANLYTROEntities1")
         {
         }
     

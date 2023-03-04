@@ -22,9 +22,6 @@ namespace Quanlytrotdmune.Models
     
         public int location_id { get; set; }
         public string name { get; set; }
-        public string city { get; set; }
-        public string district { get; set; }
-        public string ward { get; set; }
         public string street { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
