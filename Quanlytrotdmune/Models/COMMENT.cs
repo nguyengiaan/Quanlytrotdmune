@@ -19,6 +19,7 @@ namespace Quanlytrotdmune.Models
         public Nullable<int> room_id { get; set; }
         public string content { get; set; }
         public Nullable<int> rate { get; set; }
+        public Nullable<int> user_id_tro { get; set; }
     
         public virtual ROOM ROOM { get; set; }
         public virtual USERTRO USERTRO { get; set; }

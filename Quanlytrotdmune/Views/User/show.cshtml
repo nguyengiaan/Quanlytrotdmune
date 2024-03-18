@@ -1,0 +1,43 @@
+﻿@using Quanlytrotdmune.Models
+@model IEnumerable<Quanlytrotdmune.Models.ROOM>
+<div class="col-lg-9">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="row">
+                @foreach (var a in Model)
+                {
+                <div class="col-md-4" style="height: 80px !important" >
+                    <div class="product-item" style="margin-bottom:30px;">
+                        <div class="product-title">
+                            <a href="#">@a.name</a>
+                            <div class="ratting">
+                              
+                                <p style="color:orange;font-display:inherit">@a.status</p>
+                            </div>
+                        </div>
+                        <div class="product-image">
+                            <a href="product-detail.html">
+                                <img src="~/Content/Anhtro/@a.Avt" alt="Product Image" style="width:200px;height:100px">
+                            </a>
+                            <div class="product-action">
+                                <a href="@Url.Action("Deleteroom", "User", new {id=a.room_id})"><i class="fa fa-recycle"></i></a>
+                                <a href="@Url.Action("Detail", "Room", new {id=a.room_id})"><i class="fa fa-search"></i></a>
+                                <a href="@Url.Action("Updateroom", "User", new {id=a.room_id})"><i class="fa fa-upload"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                }
+
+
+            </div>
+
+            <!-- Pagination Start -->
+            <!-- Pagination Start -->
+        </div>
+
+        <!-- Side Bar Start -->
+        <!-- Side Bar End -->
+    </div>
+</div>

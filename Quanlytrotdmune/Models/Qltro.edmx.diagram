@@ -8,7 +8,6 @@
         <EntityTypeShape EntityType="QUANLYTROModel.ADMIN" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QUANLYTROModel.COMMENT" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QUANLYTROModel.FAVORITE" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QUANLYTROModel.IMAGE" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="QUANLYTROModel.LOCATION" Width="1.5" PointX="3.75" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="QUANLYTROModel.ROOM" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QUANLYTROModel.USERTRO" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
@@ -16,9 +15,10 @@
         <AssociationConnector Association="QUANLYTROModel.FK__COMMENT__user_id__46E78A0C" ManuallyRouted="false" />
         <AssociationConnector Association="QUANLYTROModel.FK__FAVORITE__room_i__440B1D61" ManuallyRouted="false" />
         <AssociationConnector Association="QUANLYTROModel.FK__FAVORITE__user_i__4316F928" ManuallyRouted="false" />
-        <AssociationConnector Association="QUANLYTROModel.FK__IMAGE__room_id__403A8C7D" ManuallyRouted="false" />
         <AssociationConnector Association="QUANLYTROModel.FK__ROOM__location_i__3C69FB99" ManuallyRouted="false" />
         <AssociationConnector Association="QUANLYTROModel.FK__ROOM__userid__3D5E1FD2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QUANLYTROModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="QUANLYTROModel.DEMO2" Width="1.5" PointX="8.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

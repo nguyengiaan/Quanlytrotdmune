@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>E Store - eCommerce HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="eCommerce HTML Template Free Download" name="keywords">
+    <meta content="eCommerce HTML Template Free Download" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="lib/slick/slick.css" rel="stylesheet">
+    <link href="~/Content/lib/slick/slick.css" rel="stylesheet" />
+    <link href="~/Content/lib/slick/slick-theme.css" rel="stylesheet">
+    <link href="~/Content/css/profilecss.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <!-- Template Stylesheet -->
+    <link href="~/Content/css/style.css" rel="stylesheet">
+
+    <script src="~/Content/leaflet.js"></script>
+    <link href="~/Content/Control.Geocoder.css" rel="stylesheet" />
+    <script src="~/Content/main.js"></script>
+    <link href="~/Content/leaflet.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Top bar Start -->
+    <!-- Top bar End -->
+    <!-- Nav Bar Start -->
+    @Html.Action("Loginlogout", "User")
+    <!-- Nav Bar End -->
+    <!-- Bottom Bar Start -->
+    <!-- Bottom Bar End -->
+    <!-- Main Slider Start -->
+    @RenderBody()
+    <!-- Review End -->
+    <!-- Footer Start -->
+
+    <!-- Footer End -->
+    <!-- Footer Bottom Start -->
+
+    <!-- Footer Bottom End -->
+    <!-- Back to Top -->
+   
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/lib/easing/easing.min.js"></script>
+    <script src="~/Content/lib/slick/slick.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="~/Content/js/main.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+
+

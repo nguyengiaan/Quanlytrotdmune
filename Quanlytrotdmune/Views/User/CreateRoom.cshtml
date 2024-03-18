@@ -1,0 +1,219 @@
+﻿
+@{
+    ViewBag.Title = "CreateRoom";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+
+@{
+    var location = (SelectList)ViewBag.Location;
+}
+<html>
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        body {
+            background-color: #f2f2f2;
+        }
+
+        #form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .wrapper {
+            background-color: #fff;
+            box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 400px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        header {
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .dbl-field {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .field {
+            position: relative;
+            width: 48%;
+        }
+
+        .field input[type="text"],
+        .field input[type="date"],
+        .field select,
+        .message textarea {
+            width: 100%;
+            padding: 15px 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .field input[type="text"]:focus,
+        .field input[type="date"]:focus,
+        .field select:focus,
+        .message textarea:focus {
+            outline: none;
+            border-color: #1879d3;
+            box-shadow: 0px 0px 5px 0px rgba(24, 121, 211, 0.5);
+        }
+
+        .field i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10px;
+            color: #ccc;
+        }
+
+        .message textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .button-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        #btn-submit {
+            background-color: #1879d3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            padding: 15px 30px;
+            cursor: pointer;
+        }
+
+        #btn-submit:hover {
+            background-color: #0c5da5;
+        }
+
+        #btn-cancel {
+            background-color: #fff;
+            color: #1879d3;
+            border: 2px solid #1879d3;
+            border-radius: 5px;
+            font-size: 16px;
+            padding: 15px 30px;
+            cursor: pointer;
+        }
+        #form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .wrapper {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        form {
+            width: 400px;
+            margin: 0
+        }
+</style>
+ </head>
+<body>
+    <div id="form-container">
+        <div class="wrapper" style="height:700px;width:1400px;" >
+            <div style="margin-left: 350px; height: 500px;width:700px;margin-bottom:100px;">
+               <form action="CreateRoom" method="post" enctype="multipart/form-data">
+                    <header style="margin-left:180px">Thêm Trọ </header>
+
+                    <div class="dbl-field">
+                        <div class="field">
+                            <input type="text" name="tentro" placeholder="Hãy nhập tên trọ" style="width:300px;padding-left:0px">
+                            <p style="font-size:smaller !important;color:red!important">@ViewBag.error1</p>
+                        </div>
+                        <div class="field">
+                            <input type="date" name="date" style="margin-left: 120px; width: 300px">
+                            <p style="font-size:smaller !important;color:red!important">@ViewBag.error2</p>
+                        </div>
+                    </div>
+                    <div class="dbl-field">
+                        <div class="field">
+                            <input type="text" name="phone" placeholder="Hãy nhập số điện thoại" style="width: 250px; width: 300px;">
+                            <p style="font-size:smaller !important;color:red!important">@ViewBag.error3</p>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="price" placeholder="Hãy nhập giá" style="margin-left: 120px; width: 300px">
+                            <p style="font-size:smaller !important;color:red!important">@ViewBag.error4</p>
+
+                        </div>
+                    </div>
+                    <div class="dbl-field">
+                        <div class="field">
+                            <select id="idlocation" name="location" style="width: 250px; width: 300px;  ">
+                                @foreach (var a in location)
+                                {
+                                    
+                                   
+                                        <option value="@a.Value">@a.Text</option>
+                                    
+
+                                }
+                            </select>
+
+                        </div>
+                        <div class="field">
+                            <input type="text" name="diachi" placeholder="Hãy nhập địa chỉ" style="margin-left: 120px; width: 300px">
+                            <p style="font-size:smaller !important;color:red!important">@ViewBag.error5</p>
+                        </div>
+                    </div>
+                    <div class="dbl-field">
+
+                        <div class="field">
+                            <input type="file" id="uploadhinh" name="uploadhinh" style="margin-bottom:5px" accept="image/*">
+                            <p style="font-size:smaller !important;color:red!important">@ViewBag.error6</p>
+                        </div>
+                    </div>
+                    <div class="message">
+
+                        <textarea placeholder="Chi tiết" name="desprcription" style="width:650px;"></textarea>
+                        <i class="material-icons"></i>
+
+                    </div>
+                    <div class="button-area" style="margin-top:-10px;">
+                        <button type="submit" id="btn-submit">Thêm</button>
+                        <button id="btn-cancel" style="margin-right:40px;background: white;color:blue;border:2px solid blue;margin-left:450px;">Cancel</button>
+                    </div>
+
+                </form>
+            </div>
+          
+        </div>
+    </div>
+</body>
+</html>
+
+

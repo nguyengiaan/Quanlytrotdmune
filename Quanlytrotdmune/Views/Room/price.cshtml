@@ -1,0 +1,143 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<Quanlytrotdmune.Models.ROOM>
+@{
+    ViewBag.Title = "SumRoom";
+    Layout = "~/Views/Shared/_LayoutPage4.cshtml";
+}
+
+<div class="product-view">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-view-top">
+                            @using (Html.BeginForm("price", "Room", FormMethod.Get))
+                            {
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="product-short">
+                                            <select class="select" name="price" id="price">
+                                                <option selected>Hãy chọn giá</option>
+                                                <option value="1">500.000 ->700.000</option>
+                                                <option value="2">700.000 ->1.000.000</option>
+                                                <option value="3">1.000.000->2.000.000</option>
+                                            </select>
+                                            <p style="color:red;font-size:smaller">ViewBag.error </p>
+                                        </div>
+                                        
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="product-short">
+                                            <button type="submit" class="btn btn-primary">Primary</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    @foreach (var a in Model)
+                    {
+                        <div class="col-md-4">
+                            <div class="product-item">
+                                <div class="product-title">
+                                    <a href="@Url.Action("Detail", "Room", new { id = a.room_id })">@a.name</a>
+                                </div>
+                                <div class="product-image">
+                                    <a href="@Url.Action("Detail", "Room", new { id = a.room_id })">
+                                        <img src="@Url.Content("~/Content/Anhtro/" + a.Avt)" style="width:400px;height:200px" />
+                                    </a>
+                                    <div class="product-action">
+                                        <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                        <a href="@Url.Action("Additem", "User", new { iduser = ViewBag.id, idroom = a.room_id })"><i class="fa fa-heart"></i></a>
+                                        <a href="#"><i class="fa fa-search"></i></a>
+                                    </div>
+                                </div>
+                                <div class="product-price">
+                                    <h3><span>VNĐ</span>@String.Format("{0:0,0}", a.price)</h3>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                    <!-- Pagination Start -->
+                    <div class="col-md-12">
+                        <nav aria-label="Page navigation example">
+                            @Html.PagedListPager(Model, page => Url.Action("SumRoom", new { page, pagesize = 9 }))
+                        </nav>
+                    </div>
+                    <!-- Pagination Start -->
+
+                </div>
+
+                <!-- Side Bar Start -->
+                <!-- Side Bar End -->
+            </div>
+            <div class="col-lg-4 sidebar">
+                <div class="sidebar-widget category">
+                    <h2 class="title">Category</h2>
+                    <nav class="navbar bg-light">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-female"></i>Fashion & Beauty</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-child"></i>Kids & Babies Clothes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-tshirt"></i>Men & Women Clothes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-mobile-alt"></i>Gadgets & Accessories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-microchip"></i>Electronics & Accessories</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+        .pagination a {
+            color: #007bff;
+            margin: 0 10px;
+        }
+
+        .pagination .active a {
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border-color: dodgerblue;
+        }
+
+    .select {
+        background: #;
+        width: 268px;
+        padding: 5px;
+        font-size: 16px;
+        line-height: 1;
+        border: 100px;
+        border-radius: 0;
+        height: 34px;
+        -webkit-appearance: none;
+        border-color: black;
+    }
+</style>

@@ -17,6 +17,8 @@ namespace Quanlytrotdmune.Models
         public int favorite_id { get; set; }
         public Nullable<int> user_id { get; set; }
         public Nullable<int> room_id { get; set; }
+        public string name { get; set; }
+        public Nullable<double> price { get; set; }
     
         public virtual ROOM ROOM { get; set; }
         public virtual USERTRO USERTRO { get; set; }

@@ -14,15 +14,14 @@ namespace Quanlytrotdmune.Models
             [StringLength(20, MinimumLength = 6, ErrorMessage = "Tối thiểu là 6 ký tự và tối đa là 20 ký tự")]
             [Display(Name = "Họ và tên")]
             public string full_name { get; set; }
-            [Required(ErrorMessage = "nhập Gmail")]
-            [RegularExpression(@"([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)", ErrorMessage = "Định dạng gmail sai")]
+        [Required(ErrorMessage = "nhập Gmail")]
+        [RegularExpression(@"([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)", ErrorMessage = "Định dạng gmail sai")]
             public string email { get; set; }
 
             [Required(ErrorMessage = "nhập password đăng nhập")]
-            [StringLength(30, MinimumLength = 6, ErrorMessage = "Tối thiểu là 6 ký tự và tối đa là 20 ký tư")]
+            [StringLength(30, MinimumLength = 6, ErrorMessage = "Tối thiểu là 6 ký tự và tối đa là 20 ký tự")]
             [RegularExpression(@"^(?=.*[a-z]).{8,15}$", ErrorMessage = "phải có ký tự thường và chữ số")]
-            [Display(Name = "Mật khẩu")]
-
+          
             public string password { get; set; }
             [Display(Name = "Hãy nhập lại mật khẩu")]
             [Required(ErrorMessage = "Hãy xác nhận password đăng nhập")]

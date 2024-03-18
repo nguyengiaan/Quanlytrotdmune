@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "qluser";
+    Layout = "~/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Quanlytrotdmune.Models.USERTRO>
+
+<div class="row">
+    <div class="col-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                @using (Html.BeginForm("qluser", "QuanLyAdmin", FormMethod.Get))
+                {
+                    <div>
+
+                        <div class="div_left"> <input type="text" name="timkiem" id="timkiem" class="form-control" aria-describedby="tìm kiếm" placeholder="hãy nhập tìm kiếm" style="width:350px;margin-bottom:10px"></div>
+
+                        <div class="div_right">
+                            <button type='submit' class='btn btn-light btn-block' style="width:100px;margin-left:170px">Tìm kiếm</button>
+
+                        </div>
+
+
+                    </div>
+                }
+                <div class="card-action">
+
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Họ và tên</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Phone</th>
+                            <th>Địa chỉ</th>
+                             <th>Đánh giá</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var a in Model)
+                        {
+                            <tr>
+                                <td>@a.full_name</td>
+                                <td>@a.email</td>
+                                <td>@a.password</td>
+                                <td>@a.phone</td>
+                                <td>@a.address</td>
+                                <td>@for(int i=0;i<a.rate;i++)
+                                {
+                                   <i class="fa fa-star" style="color:orangered"></i>
+                                }
+                                </td>
+                                <td>
+
+                                    <a href="@Url.Action("Removeuser","QuanLyAdmin",new {id=a.userid})" class="btn btn-light btn-block">Xóa</a>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="col-md-12">
+                    <nav aria-label="Page navigation example">
+                        @Html.PagedListPager(Model, page => Url.Action("qluser", new { page, pagesize = 6 }))
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+        .pagination a {
+            color: #007bff;
+            margin: 0 10px;
+        }
+
+        .pagination .active a {
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border-color: dodgerblue;
+        }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+            /* thiết lập style cho class active */
+            .pagination a.active {
+                background-color: dodgerblue;
+                color: white;
+            }
+            /* thêm màu nền khi người dùng hover vào class không active */
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+            }
+    .container_swap {
+        width: 400px;
+    }
+
+    .div_left {
+        width: 200px;
+        float: left;
+        text-align: center;
+    }
+
+    .div_right {
+        width: 200px;
+        float: left;
+        text-align: center;
+    }
+</style>
+
+

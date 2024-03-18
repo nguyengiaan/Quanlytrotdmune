@@ -1,0 +1,43 @@
+﻿@using Quanlytrotdmune.Models;
+@model IEnumerable<Quanlytrotdmune.Models.Rooms>
+@{
+    ViewBag.Title = "Favorite";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+<div class="cart-page" style="padding-left:370px">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="cart-page-inner">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Tên Trọ</th>
+                                    <th>Giá</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Chủ Trọ</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody class="align-middle">
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td><p>@item.name</p></td>
+                                    <td><p>@String.Format("{0:0,0}", Model.FirstOrDefault().price)</p></td>
+                                    <td><p>@item.street</p></td>
+                                    <td><p>@item.full_name</p></td>
+                                    <td><p>@item.phone</p></td>
+                                    <td>@Html.ActionLink("Delete","Delete","User", new { id=item.id }, new { @class = "btn btn-danger" })</td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

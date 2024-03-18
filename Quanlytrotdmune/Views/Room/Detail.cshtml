@@ -1,0 +1,249 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+@using Quanlytrotdmune.Models
+@model IEnumerable<Quanlytrotdmune.Models.Rooms>
+@{
+    var b = Model.FirstOrDefault();
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="product-detail-top" style="background-color:white!important">
+                <div class="row align-items-center">
+                    <div class="col-md-5">
+                     
+                            @foreach (var a in Model)
+                            {
+                                <img src="~/Content/Anhtro/@a.url" alt="Product Image" style="width:320px;height:310px">
+                            }
+                      
+                      
+                    </div>
+                    <div class="col-md-7">>
+                        <div class="product-content">
+                            <div class="title"><h2>@Model.FirstOrDefault().name</h2></div>
+                            <div class="price">
+                                <h4>Giá:</h4>
+                                <p>@String.Format("{0:0,0}", Model.FirstOrDefault().price)<span>VNĐ</span></p>
+                            </div>
+                            <div class="price">
+                                <h4>Người đăng:</h4>
+                                <p>@Model.FirstOrDefault().full_name</p>
+                                <div style="margin-bottom:20px">
+                                    @for (int i = 0; i < Model.FirstOrDefault().rate; i++)
+                                    {
+                                        <i class="fa fa-star" style="color:orangered"></i>
+                                    }
+                                </div>
+                            </div>
+                            <div class="price">
+                                <h4>Trạng Thái</h4>
+                                <p>@Model.FirstOrDefault().status</p>
+                                <div style="margin-bottom:20px">
+                                 
+                                </div>
+                            </div>
+                            <div class="action" style="border-color :dodgerblue!important;padding-bottom:100px;">
+                                <a class="btn" href="@Url.Action("Additem","User",new {iduser=ViewBag.id,idroom= ViewBag.idroom})"" style="border-color:dodgerblue!important;color:dodgerblue!important"><i class="fa fa-shopping-cart" style="color:dodgerblue!important"></i>Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row product-detail-bottom">
+                <div class="col-lg-12">
+                    <ul class="nav nav-pills nav-justified" style="background-color:dodgerblue!important">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="pill" href="#description" style="color:black">Chi tiết</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#specification" style="color:black">Thông tin liên hệ </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#reviews" style="color:black">Reviews (1)</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="description" class="container tab-pane active" style="background-color:white">
+                            <h4>Chi tiết</h4>
+                            <p>
+                                @Model.FirstOrDefault().description;
+                            </p>
+                        </div>
+                        <div id="specification" class="container tab-pane fade" style="background-color:white">
+                            <h4>Thông tin liên hệ</h4>
+                            <ul>
+                                <li>Địa chỉ chủ nhà:@Model.FirstOrDefault().address</li>
+                                <li>Địa chỉ trọ:@Model.FirstOrDefault().street</li>
+                                <li>Số điện thoại:@Model.FirstOrDefault().phone</li>
+                            </ul>
+                        </div>
+                        <div id="reviews" class="container tab-pane fade" style="background-color:white">
+                         @Html.Action("Showcomment", "Room")
+                            <div class="reviews-submit">
+                                <h4>Bình luận:</h4>
+                                <div class="row form">
+                                    @using (Html.BeginForm("Comment", "Room", FormMethod.Post))
+                                    {
+                                        <div class="col-md-4" style="margin-bottom:20px">
+                                            <div class="product-short">
+                                                <div class="product-short">
+                                                    <select class="select-css" name="rate" id="rate">
+                                                        <option selected>Rate</option>
+                                                        <option value="1">★</option>
+                                                        <option value="2">★★</option>
+                                                        <option value="3">★★★</option>
+                                                        <option value="4">★★★★</option>
+                                                        <option value="5">★★★★★</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                
+                                        <div class="col-sm-12" style="background-color:white">
+                                            <textarea class="form-control" aria-label="With textarea" name="comment" id="comment" style="width:600px"></textarea>
+                                            <p style="font-size:smaller;color:red">@ViewBag.error</p>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-outline-secondary" type="submit" style="border-color:dodgerblue!important;color:dodgerblue;margin-bottom:30px">Bình luận</button>
+                                        </div>
+                                    }
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product">
+                <div class="section-header" style="margin-top:20px;color:dodgerblue!important">
+                    <h1 style="color:dodgerblue!important"></h1>
+                </div>
+
+                <div class="row align-items-center product-slider product-slider-3" style="background-color:white!important">
+                
+                </div>
+            </div>
+        </div>
+
+        <!-- Side Bar Start -->
+        <div class="col-lg-4 sidebar">
+            <input type="text" id="address" name="address" placeholder="Enter an address or coordinates" class="form-control">
+            <button id="search-btn" class="form-control" name="search-btn">Search</button>
+
+            <div class="sidebar-widget widget-slider">
+                <div class="sidebar-slider normal-slider">
+
+
+                    <div id="map" style="width:500px;height:500px">
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <!-- Side Bar End -->
+    </div>
+</div>
+<script>
+        var map = L.map('map').setView([10.7763, 106.6992], 13); //khởi tạo bản đồ
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { //thiết lập bản đồ OSM
+            attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+  }).addTo(map);
+
+        var marker = L.marker([10.7763, 106.6992]).addTo(map); //đánh dấu vị trí bất kỳ
+
+        //thêm sự kiện click vào nút Search
+        document.getElementById('search-btn').addEventListener('click', function() {
+        var input = document.getElementById('address').value;
+
+        //sử dụng Geocoder để chuyển đổi địa chỉ hoặc tọa độ thành tọa độ
+        L.Control.Geocoder.nominatim().geocode(input, function(results) {
+      if (results && results.length) {
+        var latlng = results[0].center;
+
+        //hiển thị vị trí trên bản đồ
+        marker.setLatLng(latlng);
+        map.setView(latlng, 13);
+      } else {
+            alert('Could not find location');
+      }
+    });
+  });
+</script>
+<style>
+    .select {
+        background: #;
+        width: 268px;
+        padding: 5px;
+        font-size: 16px;
+        line-height: 1;
+        border: 100px;
+        border-radius: 0;
+        height: 34px;
+        -webkit-appearance: none;
+        border-color: black;
+    }
+
+    .select-css {
+        display: block;
+        font-size: 16px;
+        font-family: sans-serif;
+        font-weight: 700;
+        color: #444;
+        line-height: 1.3;
+        padding: .6em 1.4em .5em .8em;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        border: 1px solid #aaa;
+        box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+        border-radius: .5em;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: #fff;
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+        background-repeat: no-repeat, repeat;
+        background-position: right .7em top 50%, 0 0;
+        background-size: .65em auto, 100%;
+    }
+
+        .select-css::-ms-expand {
+            display: none;
+        }
+
+        .select-css:hover {
+            border-color: #888;
+        }
+
+        .select-css:focus {
+            border-color: #aaa;
+            box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+            box-shadow: 0 0 0 3px -moz-mac-focusring;
+            color: #222;
+            outline: none;
+        }
+
+        .select-css option {
+            font-weight: normal;
+        }
+
+        .select-css::-ms-expand 
+
+</style>

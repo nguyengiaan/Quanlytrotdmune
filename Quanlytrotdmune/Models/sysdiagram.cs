@@ -12,12 +12,12 @@ namespace Quanlytrotdmune.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class IMAGE
+    public partial class sysdiagram
     {
-        public int image_id { get; set; }
-        public Nullable<int> room_id { get; set; }
-        public string url { get; set; }
-    
-        public virtual ROOM ROOM { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Quanlytrotdmune</RootNamespace>
     <AssemblyName>Quanlytrotdmune</AssemblyName>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -26,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,8 +54,15 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -62,11 +70,8 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -111,6 +116,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -126,32 +132,38 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuanLyAdminController.cs" />
+    <Compile Include="Areas\App_Start\BundleConfig.cs" />
+    <Compile Include="Areas\App_Start\FilterConfig.cs" />
+    <Compile Include="Areas\App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Model\LoginAdmin.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Addroom.cs" />
     <Compile Include="Models\ADMIN.cs">
       <DependentUpon>Qltro.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\COMMENT.cs">
       <DependentUpon>Qltro.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DEMO2.cs">
+      <DependentUpon>Qltro.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\FAVORITE.cs">
       <DependentUpon>Qltro.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\IMAGE.cs">
-      <DependentUpon>Qltro.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\LOCATION.cs">
       <DependentUpon>Qltro.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Locations.cs" />
+    <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Qltro.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -170,6 +182,10 @@
     <Compile Include="Models\ROOM.cs">
       <DependentUpon>Qltro.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Rooms.cs" />
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Qltro.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\USERTRO.cs">
       <DependentUpon>Qltro.tt</DependentUpon>
@@ -177,6 +193,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\anhqc\kurisu-makise-png-anime-moe-girl-11562923759iqu1uozmdi.png" />
+    <Content Include="Content\anhqc\Logo2.png" />
+    <Content Include="Content\anhqc\screenshot_1678428638.png" />
     <Content Include="Areas\Admin\Content\assets\css\animate.css" />
     <Content Include="Areas\Admin\Content\assets\css\app-style.css" />
     <Content Include="Areas\Admin\Content\assets\css\bootstrap.css" />
@@ -778,11 +797,34 @@
     <Content Include="Areas\Admin\Content\documentation\assets\blueprint-css\src\typography.css" />
     <Content Include="Areas\Admin\Content\documentation\assets\images\htmlstructure.png" />
     <Content Include="Areas\Admin\Content\documentation\index.html" />
+    <Content Include="Content\anhqc\anhqc1.jpg" />
+    <Content Include="Content\anhqc\anhqc2.jpg" />
+    <Content Include="Content\anhqc\anhqc3.png" />
+    <Content Include="Content\anhqc\AutoDesk Main banner-89472.png" />
+    <Content Include="Content\anhqc\Logo.png" />
+    <Content Include="Content\anhqc\low-res-logo.png" />
+    <Content Include="Content\anhqc\netflix-49596.png" />
+    <Content Include="Content\Anhtro\Anhnen.jpg" />
+    <Content Include="Content\Anhtro\Tro1.jpg" />
+    <Content Include="Content\Anhtro\Tro10.jpg" />
+    <Content Include="Content\Anhtro\Tro2.jpg" />
+    <Content Include="Content\Anhtro\Tro3.jpg" />
+    <Content Include="Content\Anhtro\Tro4.jpg" />
+    <Content Include="Content\Anhtro\Tro5.jpg" />
+    <Content Include="Content\Anhtro\Tro6.jpg" />
+    <Content Include="Content\Anhtro\Tro7.jfif" />
+    <Content Include="Content\Anhtro\Tro9.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\profilecss.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\images\layers-2x.png" />
+    <Content Include="Content\images\layers.png" />
+    <Content Include="Content\images\marker-icon-2x.png" />
+    <Content Include="Content\images\marker-icon.png" />
+    <Content Include="Content\images\marker-shadow.png" />
     <Content Include="Content\img\brand-1.png" />
     <Content Include="Content\img\brand-2.png" />
     <Content Include="Content\img\brand-3.png" />
@@ -819,6 +861,8 @@
     <Content Include="Content\img\slider-3.jpg" />
     <Content Include="Content\img\ssl.svg" />
     <Content Include="Content\js\main.js" />
+    <Content Include="Content\leaflet.css" />
+    <Content Include="Content\leaflet.js" />
     <Content Include="Content\lib\easing\easing.js" />
     <Content Include="Content\lib\easing\easing.min.js" />
     <Content Include="Content\lib\slick\ajax-loader.gif" />
@@ -827,6 +871,10 @@
     <Content Include="Content\lib\slick\slick.css" />
     <Content Include="Content\lib\slick\slick.js" />
     <Content Include="Content\lib\slick\slick.min.js" />
+    <Content Include="Content\Control.Geocoder.css" />
+    <Content Include="Content\main.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Usercss\CssRegister.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -888,6 +936,12 @@
     <Content Include="Content\lib\slick\slick-theme.scss" />
     <Content Include="Content\lib\slick\slick.less" />
     <Content Include="Content\lib\slick\slick.scss" />
+    <Content Include="Areas\Admin\Views\QuanLyAdmin\qluser.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyAdmin\Qladmin.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyAdmin\AddAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyAdmin\Location.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyAdmin\AddLocation.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyAdmin\CommentAD.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -916,11 +970,27 @@
     <Content Include="Views\Shared\_LayoutPageAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutPage2.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Home\Room.cshtml" />
+    <Content Include="Views\Room\Detail.cshtml" />
+    <Content Include="Views\User\Loginlogout.cshtml" />
+    <Content Include="Views\User\Favorite.cshtml" />
+    <Content Include="Views\User\profile.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage3.cshtml" />
+    <Content Include="Views\User\show.cshtml" />
+    <Content Include="Views\User\CreateRoom.cshtml" />
+    <Content Include="Views\Room\Showcomment.cshtml" />
+    <Content Include="Views\Home\SumRoom.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage4.cshtml" />
+    <Content Include="Views\Room\price.cshtml" />
+    <Content Include="Views\Room\Dexuat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Views\Addroom\" />
+    <Folder Include="Views\GioHang\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

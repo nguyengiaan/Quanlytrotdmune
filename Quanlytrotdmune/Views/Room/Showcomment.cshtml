@@ -1,0 +1,63 @@
+﻿
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<Quanlytrotdmune.Models.COMMENT>
+@{
+    ViewBag.Title = "Detail";
+    Layout = null;
+}
+<div class="reviews-submitted" style="background-color:white">
+    @foreach (var a in Model)
+    {
+        <div class="reviewer"><p style="font-style:oblique;color:blue">@a.USERTRO.full_name</p></div>
+        for (int i = 0; i < a.rate; i++)
+        {
+            <i class="fa fa-star" style="color:orangered"></i>
+        }
+        <p>
+            @a.content
+        </p>
+    }
+    <div class="col-md-12">
+        <nav aria-label="Page navigation example">
+            @Html.PagedListPager(Model, page => Url.Action("Detail", new { page, pagesize = 3, id = ViewBag.idroom }))
+        </nav>
+    </div>
+
+</div>
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+        .pagination a {
+            color: #007bff;
+            margin: 0 10px;
+        }
+
+        .pagination .active a {
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border-color: dodgerblue;
+        }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+            /* thiết lập style cho class active */
+            .pagination a.active {
+                background-color: dodgerblue;
+                color: white;
+            }
+            /* thêm màu nền khi người dùng hover vào class không active */
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>

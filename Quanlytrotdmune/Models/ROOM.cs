@@ -19,7 +19,6 @@ namespace Quanlytrotdmune.Models
         {
             this.COMMENTs = new HashSet<COMMENT>();
             this.FAVORITEs = new HashSet<FAVORITE>();
-            this.IMAGEs = new HashSet<IMAGE>();
         }
     
         public int room_id { get; set; }
@@ -29,13 +28,14 @@ namespace Quanlytrotdmune.Models
         public string status { get; set; }
         public Nullable<int> location_id { get; set; }
         public Nullable<int> userid { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
+        public string Avt { get; set; }
+        public string Address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<COMMENT> COMMENTs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FAVORITE> FAVORITEs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IMAGE> IMAGEs { get; set; }
         public virtual LOCATION LOCATION { get; set; }
         public virtual USERTRO USERTRO { get; set; }
     }

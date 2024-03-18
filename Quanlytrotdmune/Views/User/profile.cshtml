@@ -1,0 +1,70 @@
+﻿@using Quanlytrotdmune.Models
+@model IEnumerable<Quanlytrotdmune.Models.USERTRO>
+@{
+    ViewBag.Title = "profile";
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+}
+<div class="card-body" style="z-index:999; background:white;">
+    @foreach (var a in Model)
+    {
+        
+        <div id="profile-info" class="col-lg-3">
+
+            <div class="text-center pd-2">
+                <img class="img-avatar mb-3" src="~/Content/anhqc/kurisu-makise-png-anime-moe-girl-11562923759iqu1uozmdi.png">
+                <h3 class="text-capitalize">@a.full_name</h3>
+                @for(int i=0;i<a.rate;i++)
+                {
+                    <i class="fa fa-star" style="color:orangered"></i>
+                }
+            </div>
+            <div class="py-3">
+                <p class="clearfix">
+                    <span class="float-text text-capitalize">Đia chỉ:@a.address </span>
+                    <span class="float-right"></span>
+                </p>
+                <p class="clearfix">
+                    <span class="float-text text-capitalize">Số điện thoại:@a.phone</span>
+                    <span class="float-right"></span>
+                </p>
+                <p class="clearfix">
+                    <span class="float-text text-capitalize">Email:@a.email </span>
+                    <span class="float-right"></span>
+                </p>
+            </div>
+            <div class="py-3">
+                <a class="btn btn-primary btn-rounded btn-block mb-2 text-uppercase" id="show-form" href="@Url.Action("CreateRoom","User")">Tải lên</a>
+            </div>
+        </div>
+    }
+
+    @Html.Action("show","User");
+</div>
+
+
+<script>
+    const showFormBtn = document.getElementById('show-form');
+    const formContainer = document.getElementById('form-container');
+    const myForm = document.getElementById('my-form');
+    // show form when button is clicked
+    showFormBtn.addEventListener('click', function () {
+        formContainer.style.display = 'block';
+
+    });
+    formContainer.addEventListener('submit', function (event) {
+        event.preventDefault(); // prevent default form submission behavior
+        // do form submission logic here
+        formContainer.style.display = 'none';
+        showFormBtn.style.display = 'block'; // hide form
+    });
+
+    // hide form and submit data when form is submitted
+    myForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // prevent default form submission behavior
+        // do form submission logic here
+        formContainer.style.display = 'none';
+        showFormBtn.style.display = 'block'; // hide form
+    });
+   
+
+</script>

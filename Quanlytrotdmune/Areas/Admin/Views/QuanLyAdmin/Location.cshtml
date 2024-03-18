@@ -1,0 +1,139 @@
+﻿
+
+
+@{
+    ViewBag.Title = "Qladmin";
+    Layout = "~/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+
+
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Quanlytrotdmune.Models.LOCATION>
+
+<div class="row">
+    <div class="col-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                @using (Html.BeginForm("Location", "QuanLyAdmin", FormMethod.Get))
+                {
+                    <div>
+
+
+
+                        <div class="container_swap">
+
+                            <div class="div_left"> <input type="text" name="timkiem" id="timkiem" class="form-control" aria-describedby="tìm kiếm" placeholder="hãy nhập tìm kiếm" style="width:350px;margin-bottom:10px"></div>
+
+                            <div class="div_right">
+                                <button type='submit' class='btn btn-light btn-block' style="width:100px;margin-left:170px">Tìm kiếm</button>
+
+                            </div>
+                            <div class="div_right1" style="padding-left:320px">
+                                <a href="@Url.Action("AddLocation","QuanLyAdmin")" class='btn btn-light btn-block' style="width:100px;margin-left:170px">Thêm</a>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                }
+
+                <div class="card-action">
+
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Phường</th>
+                            <th>Số km</th>
+                          
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var a in Model)
+                        {
+                            <tr>
+                                <td>@a.name</td>
+                                <td>@a.km</td>
+                             
+
+
+                                <td>
+
+                                    <a href="@Url.Action("RemoveLC","QuanLyAdmin",new {id=a.location_id})" class="btn btn-light btn-block">Xóa</a>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="col-md-12">
+                    <nav aria-label="Page navigation example">
+                        @Html.PagedListPager(Model, page => Url.Action("Location", new { page, pagesize = 6 }))
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+        .pagination a {
+            color: #007bff;
+            margin: 0 10px;
+        }
+
+        .pagination .active a {
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border-color: dodgerblue;
+        }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+            /* thiết lập style cho class active */
+            .pagination a.active {
+                background-color: dodgerblue;
+                color: white;
+            }
+            /* thêm màu nền khi người dùng hover vào class không active */
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+            }
+
+    .container_swap {
+        width: 400px;
+    }
+
+    .div_left {
+        width: 200px;
+        float: left;
+        text-align: center;
+    }
+
+    .div_right {
+        width: 200px;
+        float: left;
+        text-align: center;
+    }
+</style>
+
+
+
+

@@ -1,0 +1,38 @@
+﻿@using Quanlytrotdmune.Models
+@model IEnumerable<Quanlytrotdmune.Models.ROOM>
+@{
+    ViewBag.Title = "Detail";
+    Layout = null;
+}
+<div class="row align-items-center product-slider product-slider-4">
+
+    @foreach (var a in Model)
+    {
+
+        <div class="col-lg-3">
+            <div class="product-item">
+                <div class="product-title">
+                    <a href="#">@a.name</a>
+                    <div class="ratting">
+                        <p style="color:orange;font-display:initial">@a.status</p>
+                    </div>
+                </div>
+                <div class="product-image">
+                    <a href="">
+                        <img src="~/Content/Anhtro/@a.Avt" alt="Product Image" style="width:400px;height:200px">
+                    </a>
+                    <div class="product-action">
+                        <a href="#"><i class="fa fa-cart-plus"></i></a>
+                        <a href="#"><i class="fa fa-heart"></i></a>
+                        <a href="@Url.Action("Detail","Room",new {id=a.room_id})"><i class="fa fa-search"></i></a>
+                    </div>
+                </div>
+                <div class="product-price">
+                    <h3><span>VNĐ</span>@String.Format("{0:0,0}", a.price)</h3>
+                    <a class="btn" href="@Url.Action("Additem","User",new {iduser=ViewBag.id,idroom=a.room_id})"><i class="fa fa-shopping-cart"></i>Lưu</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

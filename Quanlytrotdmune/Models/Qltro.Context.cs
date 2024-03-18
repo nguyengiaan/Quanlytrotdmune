@@ -28,9 +28,10 @@ namespace Quanlytrotdmune.Models
         public virtual DbSet<ADMIN> ADMINs { get; set; }
         public virtual DbSet<COMMENT> COMMENTs { get; set; }
         public virtual DbSet<FAVORITE> FAVORITEs { get; set; }
-        public virtual DbSet<IMAGE> IMAGEs { get; set; }
         public virtual DbSet<LOCATION> LOCATIONs { get; set; }
         public virtual DbSet<ROOM> ROOMs { get; set; }
         public virtual DbSet<USERTRO> USERTROes { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<DEMO2> DEMO2 { get; set; }
     }
 }
